@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image' // Next.js Image component
 import MainLayout from '../components/MainLayout'
-import logo from '../public/images/logo.png' // Doğru import
+import logo from '../public/aassets/logo.png' // Doğru import
 
 export default function Contact () {
   return (

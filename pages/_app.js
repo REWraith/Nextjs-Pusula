@@ -6,6 +6,7 @@ export default function MyApp ({ Component, pageProps }) {
     <>
       <Head>
         <title>Pusula Alüminyum</title>
+        <link rel='icon' href='/assets/minilogo.png' />
         <meta
           name='description'
           content='Division, mobil uygulama geliştirme hizmetlerinde lider bir şirkettir.'
