@@ -35,12 +35,10 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-2">
         {/* Logo */}
-        <Link href="/" passHref>
-          <motion.h1
-            className={`text-2xl font-bold transition duration-300 ${textColor}`}
-          >
+        <Link href="/">
+          <h1 className={`text-2xl font-bold transition duration-300 ${textColor}`}>
             Pusula Alüminyum
-          </motion.h1>
+          </h1>
         </Link>
 
         {/* Hamburger Menu */}
@@ -67,11 +65,11 @@ export default function Header() {
               whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
             >
               <Link href={item.path}>
-                <a
+                <span
                   className={`text-sm font-medium ${textColor} transition-all hover:text-blue-500`}
                 >
                   {item.name}
-                </a>
+                </span>
               </Link>
             </motion.div>
           ))}
@@ -101,9 +99,9 @@ export default function Header() {
                 onClick={() => setMenuOpen(false)}
               >
                 <Link href={item.path}>
-                  <a className="text-white text-xl font-semibold hover:text-blue-400">
+                  <span className="text-white text-xl font-semibold hover:text-blue-400">
                     {item.name}
-                  </a>
+                  </span>
                 </Link>
               </motion.div>
             ))}
