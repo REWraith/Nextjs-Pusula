@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { ongoing_data as projects } from '../data/ongoing-data'
 import { useRouter } from 'next/router'
 import MainLayout from '../components/MainLayout'
+import Image from 'next/image'
 
 export default function RefactoredOngoing () {
   const [filteredProjects, setFilteredProjects] = useState(projects)
@@ -23,7 +24,7 @@ export default function RefactoredOngoing () {
   }, [selectedFilter])
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowPlaceholders(false), 1500)
+    const timer = setTimeout(() => setShowPlaceholders(false), 1000)
     return () => clearTimeout(timer)
   }, [])
 
@@ -43,10 +44,10 @@ export default function RefactoredOngoing () {
               "url('https://images.unsplash.com/photo-1625722662233-297060231b85?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
           }}
         >
-          <div className='absolute inset-0 bg-black bg-opacity-40'></div>
+          <div className='absolute inset-0 bg-black bg-opacity-50'></div>
           <div className='relative max-w-7xl mx-auto h-full flex flex-col justify-center items-start px-6'>
             <motion.h1
-              className='text-3xl sm:text-5xl font-bold text-white mb-2'
+              className='text-4xl sm:text-5xl font-bold text-white mb-4'
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
@@ -84,12 +85,12 @@ export default function RefactoredOngoing () {
           </div>
 
           {/* Project Cards */}
-          <div className='flex flex-wrap justify-center gap-6'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
             {showPlaceholders
               ? Array.from({ length: projects.length }).map((_, index) => (
                   <motion.div
                     key={index}
-                    className='w-[90%] sm:w-[45%] lg:w-[30%] h-48 bg-gray-300 rounded-xl shadow-md animate-pulse'
+                    className='w-full h-48 bg-gray-300 rounded-xl shadow-md animate-pulse'
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -99,16 +100,20 @@ export default function RefactoredOngoing () {
                   <motion.div
                     key={project.id}
                     onClick={() => handleNavigate(project.id, project)}
-                    className='relative bg-white w-[90%] sm:w-[45%] lg:w-[30%] rounded-xl overflow-hidden shadow-md group transform transition-transform hover:scale-105 cursor-pointer'
+                    className='relative bg-white rounded-xl overflow-hidden shadow-md group transform transition-transform hover:scale-105 cursor-pointer'
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.2 }}
                   >
                     <div className='h-48 overflow-hidden'>
-                      <img
+                      <Image
                         src={project.img}
                         alt={project.name}
+                        width={400}
+                        height={300}
                         className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-500'
+                        placeholder='blur'
+                        blurDataURL='/images/placeholder.jpg'
                       />
                     </div>
                     <div className='p-4'>
